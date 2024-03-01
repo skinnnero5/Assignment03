@@ -5,6 +5,8 @@ import redis
 class RedisInterface:
     """Class for inserting into and querying the RedisJSON database."""
 
+    DEBUG = True
+
     def __init__(self):
         """
         Initializes the RedisInterface based on config.yaml.
@@ -12,7 +14,6 @@ class RedisInterface:
         self.config = self.load_config()
         self.r = self.get_redis_connection()
         
-
     def insert_cards(self, set, cards):
         """
         Inserts JSONs into RedisJSON given a set and a list of cards.
@@ -27,7 +28,8 @@ class RedisInterface:
         for card in cards:
             name = card['name']
             self.r.json().set('cards:' + set + ':' + name, '.', json.dumps(card))
-            print(f"Name: {name}")
+            if self.DEBUG:
+                print(f"DEBUG| Inserted {name}")
 
     def get_cards(self, set, name = None):
         """Retrieves cards from database, default all from a set, or selected by name."""
