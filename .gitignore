@@ -1,3 +1,4 @@
 config.yaml
 __pycache__/db_config.cpython-312.pyc
 __pycache__/scryfall_fetcher.cpython-312.pyc
+__pycache__/redis_interface.cpython-312.pyc
