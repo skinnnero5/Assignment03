@@ -1,5 +1,6 @@
-from db_config import get_redis_connection
 import json
+import yaml
+import redis
 
 class RedisInterface:
     """Class for inserting into and querying the RedisJSON database."""
@@ -8,7 +9,9 @@ class RedisInterface:
         """
         Initializes the RedisInterface based on config.yaml.
         """
-        self.r = get_redis_connection()
+        self.config = self.load_config()
+        self.r = self.get_redis_connection()
+        
 
     def insert_cards(self, set, cards):
         """
@@ -39,5 +42,34 @@ class RedisInterface:
     def flush(self):
         """Flushes database."""
         self.r.flushall()
+
+    #From https://github.com/gchandra10/redis_python/blob/main/11_redisjson.py
+    def load_config(self):
+        """Load configuration from the YAML file.
+
+        Returns:
+            dict: Configuration data.
+        """
+        with open("config.yaml", "r") as file:
+            return yaml.safe_load(file)
+
+    #From https://github.com/gchandra10/redis_python/blob/main/11_redisjson.py    
+    def get_redis_connection(self):
+        """Create a Redis connection using the configuration.
+
+        Returns:
+            Redis: Redis connection object.
+        """
+        return redis.Redis(
+            host=self.config["redis"]["host"],
+            port=self.config["redis"]["port"],
+            db=0,
+            decode_responses=True,
+            username=self.config["redis"]["user"],
+            password=self.config["redis"]["password"],
+        )
+
+
+
 
         
