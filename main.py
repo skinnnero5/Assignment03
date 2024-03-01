@@ -8,15 +8,11 @@ search_params = {'rarity': 'M'}
 cards = ScryfallFetcher.fetch_cards(set, search_params)
 
 redis_interface = RedisInterface()
-
 redis_interface.flush()
-
 redis_interface.insert_cards(set, cards)
 
-# Get JSON and decode 
 card_name = 'Karn, the Great Creator'
 json_data = redis_interface.get_cards(set, card_name,)
 data = json.loads(json_data)
-
-# Extract fields  
+ 
 print(f"Type line for {card_name} is {data['type_line']}.")
