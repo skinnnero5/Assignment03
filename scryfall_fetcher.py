@@ -6,6 +6,8 @@ class ScryfallFetcher:
 
     BASE_URL = "https://api.scryfall.com/cards/search"
 
+    DEBUG = True
+
     @staticmethod
     def fetch_cards(set, search_params=None):
         """
@@ -36,7 +38,11 @@ class ScryfallFetcher:
         response = requests.get(full_url)
 
         if response.status_code == 200:
-            return response.json().get('data', [])
+            cards = response.json().get('data', [])
+            if ScryfallFetcher.DEBUG:
+                for card in cards:
+                    print(f"DEBUG| ScryfallFetcher fetched {card['name']}")
+            return cards
         else:
             print(f"Error fetching cards. Status Code: {response.status_code}")
             error_details = response.json()

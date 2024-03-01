@@ -29,7 +29,7 @@ class RedisInterface:
             name = card['name']
             self.r.json().set('cards:' + set + ':' + name, '.', json.dumps(card))
             if self.DEBUG:
-                print(f"DEBUG| Inserted {name}")
+                print(f"DEBUG| RedisInterface inserted {name}")
 
     def get_cards(self, set, name = None):
         """Retrieves cards from database, default all from a set, or selected by name."""
