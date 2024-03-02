@@ -19,6 +19,5 @@ data = json.loads(json_data)
 print(f"Type line for {card_name} is {data['type_line']}.")
 
 data = redis_interface.get_cards(set)
-
 CardCharter.display_pie_chart(data, set)
 

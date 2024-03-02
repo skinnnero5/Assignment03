@@ -10,6 +10,6 @@ class CardSearcher:
         """
         self.name = name
 
-    def search_name(self, name):
-        """Search for a specific card by name."""
+    def search_name(self, type):
+        """Search for cards by type."""
 
