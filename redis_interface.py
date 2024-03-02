@@ -34,10 +34,13 @@ class RedisInterface:
     def get_cards(self, set, name = None):
         """Retrieves cards from database, default all from a set, or selected by name."""
 
-        if name:
-            json_data = self.r.json().get('cards:' + set + ':' + name,)
+        if name is not None:
+            json_data = self.r.json().get(f'cards:{set}:{name}',)
         else:
-            json_data = self.r.json().get('cards:' + set,)
+            keys = self.r.keys(f'cards:{set}:*')
+            if self.DEBUG:
+                print(f"DEBUG| RedisInterface keys {keys}")
+            json_data = [self.r.json().get(key,) for key in keys]
 
         return json_data
     
