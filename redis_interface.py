@@ -5,7 +5,7 @@ import redis
 class RedisInterface:
     """Class for inserting into and querying the RedisJSON database."""
 
-    DEBUG = True
+    DEBUG = False
 
     def __init__(self):
         """

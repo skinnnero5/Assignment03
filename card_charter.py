@@ -7,7 +7,7 @@ class CardCharter:
     DEBUG = False
 
     @staticmethod
-    def display_pie_chart(data, set):
+    def display_color_pie_chart(data, set):
         """Generate and display a pie chart based on the colors of the cards."""
 
         color_count = {'None'         : 0,
