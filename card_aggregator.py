@@ -8,7 +8,13 @@ class CardAggregator:
 
     @staticmethod
     def calculate_total_price(data, set):
-        """Return total price of all cards in a set"""
+        """
+        Display total price of all cards in a set
+
+        Parameters:
+        - data (list): List of JSON objects with Magic the Gathering card data.
+        - set (str): The Magic the Gathering set abbreviation (ex: 'RVR' for Ravnica Remastered).
+        """
 
         unknown_price_cards = 0
         total_price = 0.00

@@ -21,9 +21,6 @@ class RedisInterface:
         Parameters:
         - set (str): The Magic the Gathering set abbreviation (ex: 'RVR' for Ravnica Remastered).
         - cards (list): List of cards in JSON format from Scryfall API.
-
-        Returns:
-        - result: 0 if successful, 1 if error.
         """
         for card in cards:
             name = card['name']
@@ -32,7 +29,16 @@ class RedisInterface:
                 print(f"DEBUG| RedisInterface inserted {name}")
 
     def get_cards(self, set, name = None):
-        """Retrieves cards from database, default all from a set, or selected by name."""
+        """
+        Retrieves cards from database, default all from a set, or selected by name.
+        
+        Parameters:
+        - set (str): The Magic the Gathering set abbreviation (ex: 'RVR' for Ravnica Remastered).
+        - name (str): Card name if one specific card is desired. Otherwise, get all.
+
+        Returns:
+        - json_data (list): A list of card data based on the query.
+        """
 
         if name is not None:
             json_data = self.r.json().get(f'cards:{set}:{name}',)
@@ -50,7 +56,8 @@ class RedisInterface:
 
     #From https://github.com/gchandra10/redis_python/blob/main/11_redisjson.py
     def load_config(self):
-        """Load configuration from the YAML file.
+        """
+        Load configuration from the YAML file.
 
         Returns:
             dict: Configuration data.
@@ -60,7 +67,8 @@ class RedisInterface:
 
     #From https://github.com/gchandra10/redis_python/blob/main/11_redisjson.py    
     def get_redis_connection(self):
-        """Create a Redis connection using the configuration.
+        """
+        Create a Redis connection using the configuration.
 
         Returns:
             Redis: Redis connection object.

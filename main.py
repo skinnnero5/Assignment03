@@ -14,16 +14,20 @@ redis_interface = RedisInterface()
 #redis_interface.flush()
 #redis_interface.insert_cards(set, cards)
 
-card_name = 'Karn, the Great Creator'
-json_data = redis_interface.get_cards(set, card_name,)
-data = json.loads(json_data)
-
 data = redis_interface.get_cards(set)
-#CardCharter.display_color_pie_chart(data, set)
 
+# Demonstrate graphing functionality
+print("Displaying graph based on database:")
+CardCharter.display_color_pie_chart(data, set)
+
+# Demonstrate aggregation functionality
+print("Aggregating USD price of cards in database:")
 CardAggregator.calculate_total_price(data, set)
 
+# Demonstrate search functionality
 card_type = "Planeswalker"
+
+print(f"Searching database for cards that match the specified type:")
 type_matches = CardSearcher.search_type(data, card_type)
 
 print(f"{set} has {len(type_matches)} cards of the {card_type} type.")

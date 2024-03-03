@@ -1,11 +1,20 @@
 import json
 
 class CardSearcher:
-    """Class for performing search operations on the data."""
+    """Static class for performing search operations on the data."""
 
     @staticmethod
     def search_type(data, card_type):
-        """Search for cards by type."""
+        """
+        Search for cards by type.
+
+        Parameters:
+        - data (list): List of JSON objects with Magic the Gathering card data.
+        - card_type (str): Card type to search for. (ex: Land, Creature, Planeswalker)
+
+        Returns:
+        - result (list): A list of cards with a type_line that contains the given type.
+        """
 
         result = []
 

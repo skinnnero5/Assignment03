@@ -18,7 +18,7 @@ class ScryfallFetcher:
         - search_params (dict): Additional search parameters for the Scryfall API.
 
         Returns:
-        - list: A list of card data based on the query.
+        -cards (list): A list of card data based on the query.
         """
         if not search_params:
             search_params = {}

@@ -8,7 +8,13 @@ class CardCharter:
 
     @staticmethod
     def display_color_pie_chart(data, set):
-        """Generate and display a pie chart based on the colors of the cards."""
+        """
+        Generate and display a pie chart based on the colors of the cards.
+
+        Parameters:
+        - data (list): List of JSON objects with Magic the Gathering card data.
+        - set (str): The Magic the Gathering set abbreviation (ex: 'RVR' for Ravnica Remastered).
+        """
 
         color_count = {'None'         : 0,
                        'Multicolored' : 0,
